@@ -1,30 +1,3 @@
-Episode IV: A New Hope
-
-It is a period of civil war. Rebel spaceships, striking from a hidden base, have won their first victory against the evil Galactic Empire. 
-
-During the battle, Rebel spies managed to steal secret plans to the Empire’s ultimate weapon, the DEATH STAR, an armored space station with enough power to destroy an entire planet. 
-
-Pursued by the Empire’s sinister agents, Princess Leia races home aboard her starship, custodian of the stolen plans that can save her people and restore freedom to the galaxy....
-
-
-Episode V: The Empire Strikes Back
-
-It is a dark time for the Rebellion. Although the Death Star has been destroyed, Imperial troops have driven the Rebel forces from their hidden base and pursued them across the galaxy.
-
-Evading the dreaded Imperial Starfleet, a group of freedom fighters led by Luke Skywalker has established a new secret base on the remote ice world of Hoth.
-
-The evil lord Darth Vader, obsessed with finding young Skywalker, has dispatched thousands of remote probes into the far reaches of space....
-
-
-Episode VI: The Return of the Jedi
-
-Luke Skywalker has returned to his home planet of Tatooine in an attempt to  the vile gangster Jabba the Hutt. 
-
-Little does Luke know that the GALACTIC EMPIRE has secretly begun construction on a new armored space station even more powerful than the first dreaded Death Star. 
-
-When completed, this ultimate weapon will spell certain doom for the small band of rebels struggling to restore freedom to the galaxy...
-
-
 Episode 1: The Phantom Menace
 
 Turmoil has engulfed the Galactic Republic. The taxation of trade routes to outlying star systems is in dispute.
@@ -50,6 +23,33 @@ War! The Republic is crumbling under attacks by the ruthless Sith Lord, Count Do
 In a stunning move, the fiendish droid leader, General Grievous, has swept into the Republic capital and kidnapped Chancellor Palpatine, leader of the Galactic Senate. 
 
 As the Separatist Droid Army attempts to flee the besieged capital with their valuable hostage, two Jedi Knights lead a desperate mission to rescue the captive Chancellor....
+
+
+Episode IV: A New Hope
+
+It is a period of civil war. Rebel spaceships, striking from a hidden base, have won their first victory against the evil Galactic Empire. 
+
+During the battle, Rebel spies managed to steal secret plans to the Empire’s ultimate weapon, the DEATH STAR, an armored space station with enough power to destroy an entire planet. 
+
+Pursued by the Empire’s sinister agents, Princess Leia races home aboard her starship, custodian of the stolen plans that can save her people and restore freedom to the galaxy....
+
+
+Episode V: The Empire Strikes Back
+
+It is a dark time for the Rebellion. Although the Death Star has been destroyed, Imperial troops have driven the Rebel forces from their hidden base and pursued them across the galaxy.
+
+Evading the dreaded Imperial Starfleet, a group of freedom fighters led by Luke Skywalker has established a new secret base on the remote ice world of Hoth.
+
+The evil lord Darth Vader, obsessed with finding young Skywalker, has dispatched thousands of remote probes into the far reaches of space....
+
+
+Episode VI: The Return of the Jedi
+
+Luke Skywalker has returned to his home planet of Tatooine in an attempt to  the vile gangster Jabba the Hutt. 
+
+Little does Luke know that the GALACTIC EMPIRE has secretly begun construction on a new armored space station even more powerful than the first dreaded Death Star. 
+
+When completed, this ultimate weapon will spell certain doom for the small band of rebels struggling to restore freedom to the galaxy...
 
 
 Episode VII: The Force Awakens
