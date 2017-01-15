@@ -3,9 +3,9 @@ Star Wars Random Scroll
 
 It is a period of civil war. Lucus Film and Disney are expanding the franchise to the outer edge of the galaxy in order to maximize profits and bring the Star Wars Empire to the next generation.
 
-Currently unhosted, but can be seen here:
+Currently, it can be seen here:
 
-https://cdn.rawgit.com/wmodes/starwars/e3bd0562/index.html
+http://modes.io/starwars/
 
 Credits
 -------
