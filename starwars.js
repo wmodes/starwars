@@ -23,12 +23,12 @@
 
 var swGrammar = {
   episode: {
-    "origin": ["I #fraction#", "II #fraction#", "III #fraction#", "IV #fraction#", 
-        "V #fraction#", "VI #fraction#", "VII #fraction#", "VIII", "IX", 
-        "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", 
+    "origin": ["Episode #oldones# #fraction#", "Episode #newones#", "Episode #newones# #fraction#", 
+        "A Star Wars Story"],
+    "oldones": ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"],
+    "newones": ["X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", 
         "XX", "XXI", "XXII", "XXIII", "XXIV", "XXV", "XXVI", "XXVII", "XXVIII", "XXIX",
-        "XXX", "XXXI", "XXXII", "XXXIII", "XXXIV", 
-        "XXXV", "XXXVI", "XXXVII", "XXXVIII", "XXXIX"],
+        "XXX", "XXXI", "XXXII", "XXXIII", "XXXIV", "XXXV", "XXXVI", "XXXVII", "XXXVIII", "XXXIX"],
     "fraction": ["¼", "½", "¾"]
   },
 
@@ -37,7 +37,7 @@ var swGrammar = {
         "#the# #new# #hope#", "#the# #new# #empire#",
         "#the# #rising# #hope#", 
         "The #shadow# of #the# #empire#", "#the# #shadow# of #hope#",
-        "#the# #empire# #assasin#"],
+        "#the# #empire# #assassin#"],
     "the": ["The", "A"  ],  // later we fix A/An articles with magic regex
     "return": ["Return", "Revenge", "Strike", "Menace", "Flight", "War",
         "Revolution", "Terror", "Redemption", "Death", "Rise"],
@@ -57,7 +57,7 @@ var swGrammar = {
     "shadow": ["Shadow", "Cloak", "Lair", "Legacy", "Children", "Spies", "Ghosts", 
         "Plan", "Carnage", "Slaves"],
     // "The Jedi ..."
-    "assasin": ["Assasin", "Trooper", "Agent", "Plans", "Cadet", "Spy", "Trap", 
+    "assassin": ["Assassin", "Trooper", "Agent", "Plans", "Cadet", "Spy", "Trap", 
         "Murders", "Rescue", "Attack", "Mission"]
   },
 
@@ -70,7 +70,7 @@ var swGrammar = {
         "#hero# has returned to #place# in an attempt to #goodsmallgoal#.",
         "Turmoil has engulfed #goodgroup#.",
         "There is unrest in #goodgroup#.",
-        "War! Under attacks by #foe#Desperately, #goodgroup# is crumbling.",
+        "War! Under attacks by #foe# #goodgroup# is crumbling.",
         "#friend# has vanished. In #pp# absence, #foegroup# has risen from the ashes of #foegroup2# and will not rest until #friend# has been destroyed."
     ],
     "story": ["#[hero:#goodguy#][friend:#goodguy#][foe:#badguy#][foe2:#badguy#][foegroup:#badgroup#][foegroup2:#badgroup#][pp:#poss-pronoun#]storylet#"],
@@ -134,11 +134,11 @@ var swGrammar = {
         ["Luke Skywalker", "General Leia Organa", "Princess Leia", "Han Solo", 
           "Senator Amidala", "Senator Amidala former Queen of Naboo", "Queen Amidala of Naboo", 
           "Chancellor Palpatine", "Chancellor Palpatine leader of the Galactic Senate",
-          "Skywalker", "Skywalker the last Jedi", 
-          "Lando Calrissian", "Lando Calrissian the charming bandit",
-          "Jedi Knight Anikan Skywalker", "General Jar Jar Binks Representative of the Naboo Senatorial Delegation",
-          "Admiral Ackbar", "Jedi padawan Ahsoka Tano", "Jedi Biggs Darklighter", "Chewbacca",
-          "former Stormtrouper Finn", "Jedi Grand Master Yoda", "Rey refugee from Jakku"
+          "Skywalker", "Skywalker the last Jedi", "Obi-Wan Kenobi",
+          "Lando Calrissian", "Lando Calrissian the charming bandit", "Jedi Knight Mace Windu",
+          "Jedi Knight Anakan Skywalker", "General Jar Jar Binks Representative of the Naboo Senatorial Delegation",
+          "Admiral Ackbar", "Jedi Padawan Ahsoka Tano", "Jedi Biggs Darklighter", "Chewbacca",
+          "former Stormtrooper Finn", "Jedi Grand Master Yoda", "Rey refugee from Jakku"
         ],
     "smallgoodgroup": // "... managed"
         ["two JEDI KNIGHTS", "REBEL spies", "Rebel droids R2-D2 and C3PO", "Rebel spaceships", 
@@ -148,13 +148,12 @@ var swGrammar = {
         [
           "the Supreme Chancellor", "the ruthless Sith Lord Count Dooku", "the evil lord Darth Vader", 
           "the vile gangster Jabba the Hutt", "the mysterious Count Dooku",
-          "the ruthless bountyhunter Boba Fett", 
           "the fiendish droid leader General Grievous",
           "the evil Sith lord Darth Sidius", "the cunning Emperor Palpatine",
-          "the mysterious Kylo Ren", "Grand Moff Tarkin", "Jedi Knight Mace Windu",
-          "the ruthless Bountyhunter Boba Fett", "Sith Lord Darth Maul", 
-          "the mysterious Darth Sidious", "the unstopable Captain Phasma",
-          "the deadly bountyhunter Greedo", "the scoundrel Nute Gunray", 
+          "the mysterious Kylo Ren", "Grand Moff Tarkin", 
+          "the ruthless bounty hunter Boba Fett", "Sith Lord Darth Maul", 
+          "the mysterious Darth Sidious", "the unstoppable Captain Phasma",
+          "the deadly bounty hunter Greedo", "the scoundrel Nute Gunray", 
           "the Sith Lord Savage Opress"
         ],
     "goodgroup": // "... is crumbling"
@@ -220,11 +219,16 @@ $(document).ready(function() {
       var animationEl = $('.animation');
 
       // Change Title
-      newTitle = fixArticles(title.flatten('#origin#')).trim().toUpperCase();
-      fullTitle = "Episode " + episode.flatten('#origin#') + 
-          "</br>" + newTitle;
-      $('#episode-title').html(fullTitle);
-      console.log(fullTitle)
+      titleText = fixArticles(title.flatten('#origin#')).trim().toUpperCase();
+      episodeText = episode.flatten('#origin#');
+      if (episodeText.includes("Story")) {
+        fullTitleText = titleText + "</br>" + episodeText;
+      } else {
+        fullTitleText = episodeText + "</br>" + titleText;
+      }
+      
+      $('#episode-title').html(fullTitleText);
+      console.log(fullTitleText)
       
       // Audio to play the opening crawl
       $('audio').get(0).play();
