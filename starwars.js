@@ -33,19 +33,32 @@ var swGrammar = {
   },
 
   title: {
-    "origin": ["The #agent# #doesthis#", "#nounaction# of the #agent#", 
-        "The #agent# Wars", "#shadowytitle#", "#shadowytitle#"],
-    "nounaction": ["Return", "Revenge", "Strike", "Menace", "Flight", "War",
+    "origin": ["#the# #empire# #strikes-back#", "#return# of #the# #empire#", "The #empire# #wars#",  
+        "#the# #new# #hope#", "#the# #new# #empire#",
+        "#the# #rising# #hope#", 
+        "The #shadow# of #the# #empire#", "#the# #shadow# of #hope#",
+        "#the# #empire# #assasin#"],
+    "the": ["The", "A"  ],  // later we fix A/An articles with magic regex
+    "return": ["Return", "Revenge", "Strike", "Menace", "Flight", "War",
         "Revolution", "Terror", "Redemption", "Death", "Rise"],
-    "doesthis": ["Strikes Back", "Returns", "Awakens", "Fights Back", 
+    "strikes-back": ["Strikes Back", "Returns", "Awakens", "Fights Back", 
         "Is Redeemed", "Is Lost", "Is Found"],
-    "agent": ["Sith", "Jedi", "Apprentice", "Force", "Empire", "Rebel", "Padawan",
-        "Republic", "Clone"],
-    "shadowytitle": ["A #shadowyadjective# #shadowynoun#", 
-        "The #shadowyadjective# #shadowynoun#", "A #shadowyadjective# #agent#"],
-    "shadowyadjective": ["New", "Phantom", "Hidden", "Desperate", "Secret", "Lost"],
-    "shadowynoun": ["Hope", "Menace", "Struggle", "Plan", "Sacrifice", "Crisis", 
-        "Rescue"]
+    // agent
+    "empire": ["Empire", "Sith", "Jedi", "Apprentice", "Force", "Rebel", "Padawan",
+        "Republic", "Clone", "Enemy"],
+    // shadowy adjective 
+    "new": ["New", "Phantom", "Hidden", "Desperate", "Secret", "Lost", "Lethal"],
+    // shadowy noun "a rising ..." 
+    "hope": ["Hope", "Menace", "Struggle", "Sacrifice", "Crisis", 
+        "Rescue", "Malevolence", "Mystery", "Doom", "Terror",
+        "Temptation", "Influence"],
+    "rising": ["Rising"],
+    "wars": ["Wars"],
+    "shadow": ["Shadow", "Cloak", "Lair", "Legacy", "Children", "Spies", "Ghosts", 
+        "Plan", "Carnage", "Slaves"],
+    // "The Jedi ..."
+    "assasin": ["Assasin", "Trooper", "Agent", "Plans", "Cadet", "Spy", "Trap", 
+        "Murders", "Rescue", "Attack", "Mission"]
   },
 
   intro: {
@@ -156,10 +169,10 @@ var swGrammar = {
         ],
     "badgroup": // "Evading ..."
         ["the Separatist Droid Army", "the dreaded Imperial Starfleet", 
-          "the evil Galactic Empire", "Empire’s sinister agents", 
+          "the evil Galactic Empire", "the Empire’s sinister agents", 
           "the Imperial army", "the GALACTIC EMPIRE", 
           "the greedy Trade Federation", "the separatist movement", 
-          "the sinister FIRST ORDER", "Empire", "a band of Tusken Raiders", 
+          "the sinister FIRST ORDER", "the Empire", "a band of Tusken Raiders", 
           "an army of Geonosian Soldiers"
         ],
     "place": // "stopped all shipping to..."
@@ -189,6 +202,10 @@ String.prototype.initialCap = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
+function fixArticles(string) {
+    return string.replace(/(^| )A ([aeiou])/i, "$1An $2");
+}
+
 $(document).ready(function() {
 
     window.setTimeout(function() {
@@ -203,8 +220,9 @@ $(document).ready(function() {
       var animationEl = $('.animation');
 
       // Change Title
+      newTitle = fixArticles(title.flatten('#origin#')).trim().toUpperCase();
       fullTitle = "Episode " + episode.flatten('#origin#') + 
-          "</br>" + title.flatten('#origin#');
+          "</br>" + newTitle;
       $('#episode-title').html(fullTitle);
       console.log(fullTitle)
       
