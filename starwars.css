@@ -12,6 +12,25 @@ body {
   background-image: url("bg-stars.png");
 }
 
+.audio-switch {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 999;
+  overflow: hidden;
+}
+.audio-switch img {
+  width: 30px;
+  height: 30px;
+  opacity: 0.5;
+}
+
+.audio-switch.on img {
+  -webkit-filter: drop-shadow(12px 12px 25px rgba(255,255,255,0.5));
+  filter: drop-shadow(0 0 5px #fff);
+  opacity: 0.75;
+}
+
 .starwars section {
   position: absolute;
   top: 45%;

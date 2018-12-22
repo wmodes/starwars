@@ -17,6 +17,8 @@
  * 
  */
 
+var soundurl = "Star_Wars_original_opening_crawl_1977.mp3";
+
 //
 // Tracery Grammar
 //
@@ -207,6 +209,22 @@ function fixArticles(string) {
 
 $(document).ready(function() {
 
+    $(".audio-switch").click(function() {
+      if ($(".audio-switch").hasClass("on")) {
+        $(".audio-switch").removeClass("on");
+        console.log("Debug: turn off audio")
+        $("audio").prop('muted', true);
+        $("audio").muted = true;
+      } 
+      else {
+        $(".audio-switch").addClass("on");
+        console.log("Debug: turn on audio")
+        $("audio").muted = false;
+        $("audio").prop('muted', false);
+        $("audio").volume = 100;
+      }
+    })
+
     window.setTimeout(function() {
 
       el = $(".starwars");
@@ -230,9 +248,6 @@ $(document).ready(function() {
       $('#episode-title').html(fullTitleText);
       console.log(fullTitleText)
       
-      // Audio to play the opening crawl
-      $('audio').get(0).play();
-      
       // Start the animation
       //this.start = this.el.find('.start');
       
@@ -248,6 +263,21 @@ $(document).ready(function() {
         console.log(my_para)
       }
 
+      setInterval(function() {
+        var media = document.getElementById("player");
+        media.addEventListener("canplaythrough", function() {
+          // Ready to play whole audio?
+          var media = document.getElementById("player");
+          const playPromise = media.play();
+          if (playPromise !== null){
+              playPromise.catch(() => { media.play(); })
+          }
+        }, false);
+      // setInterval(function() {
+      //     new Audio(soundurl).play();
+      }, 3000);
+
     }, 100);
+
 
 });
