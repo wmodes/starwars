@@ -115,10 +115,9 @@ body {
   animation: titles 80s linear;
 }
 
-#crawl > div > p {
+#crawl-text p {
   margin: 1.35em 0 1.85em 0;
   line-height: 1.35em;
-  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   hyphens: auto;
 }
