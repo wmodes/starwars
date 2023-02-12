@@ -226,7 +226,7 @@ $("#long-time-ago").click(function(){
   // scroll titles
   setTimeout(function(){
     scrollTitles();
-  }, 2500 + 6000)
+  }, 2500 + 5000)
   
 
   
