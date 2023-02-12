@@ -17,7 +17,7 @@
  * 
  */
 
-var soundurl = "Star_Wars_original_opening_crawl_1977.mp3";
+var soundurl = "../audio/Star_Wars_original_opening_crawl_1977.mp3";
 
 //
 // Tracery Grammar
@@ -207,77 +207,90 @@ function fixArticles(string) {
     return string.replace(/(^| )A ([aeiou])/i, "$1An $2");
 }
 
-$(document).ready(function() {
+//setup everything
+setupElements();
+createTraceryGrammar();
 
-    $(".audio-switch").click(function() {
-      if ($(".audio-switch").hasClass("on")) {
-        $(".audio-switch").removeClass("on");
-        console.log("Debug: turn off audio")
-        $("audio").prop('muted', true);
-        $("audio").muted = true;
-      } 
-      else {
-        $(".audio-switch").addClass("on");
-        console.log("Debug: turn on audio")
-        $("audio").muted = false;
-        $("audio").prop('muted', false);
-        $("audio").volume = 100;
-      }
-    })
+// activate everyting when visitor clicks on a-long-time-ago
+$("#long-time-ago").click(function(){
 
-    window.setTimeout(function() {
+  // hide a-long-time-ago
+  hideLongTimeAgo();
 
-      el = $(".starwars");
+  // scroll star wars logo
+  setTimeout(function(){
+    scrollStarWars();
+    startMusic();
+  }, 2500)
 
-      // Create tracery grammar
-      var episode = tracery.createGrammar(swGrammar["episode"]);
-      var title = tracery.createGrammar(swGrammar["title"]);
-      var intro = tracery.createGrammar(swGrammar["intro"]);
+  // scroll titles
+  setTimeout(function(){
+    scrollTitles();
+  }, 2500 + 6000)
+  
 
-      var animationEl = $('.animation');
+  
+  // Start the animation
+  //this.start = this.el.find('.start');
+})
 
-      // Change Title
-      titleText = fixArticles(title.flatten('#origin#')).trim().toUpperCase();
-      episodeText = episode.flatten('#origin#');
-      if (episodeText.includes("Story")) {
-        fullTitleText = titleText + "</br>" + episodeText;
-      } else {
-        fullTitleText = episodeText + "</br>" + titleText;
-      }
-      
-      $('#episode-title').html(fullTitleText);
-      console.log(fullTitleText)
-      
-      // Start the animation
-      //this.start = this.el.find('.start');
-      
-      // generate paragraphs
-      
-      $('#crawl-text').html("");
-      my_para = intro.flatten('#opening#').initialCap();
-      $('#crawl-text').append("<p>" + my_para + "</p>");
-      console.log(my_para)
-      for (i = 0; i < 4; i++) { 
-        my_para = intro.flatten('#story#').initialCap();
-        $('#crawl-text').append("<p>" + my_para + "</p>");
-        console.log(my_para)
-      }
+var episode, title, intro;
 
-      setInterval(function() {
-        var media = document.getElementById("player");
-        media.addEventListener("canplaythrough", function() {
-          // Ready to play whole audio?
-          var media = document.getElementById("player");
-          const playPromise = media.play();
-          if (playPromise !== null){
-              playPromise.catch(() => { media.play(); })
-          }
-        }, false);
-      // setInterval(function() {
-      //     new Audio(soundurl).play();
-      }, 3000);
+function createTraceryGrammar() {
+  // Create tracery grammar
+  episode = tracery.createGrammar(swGrammar["episode"]);
+  title = tracery.createGrammar(swGrammar["title"]);
+  intro = tracery.createGrammar(swGrammar["intro"]);
 
-    }, 100);
+  // Change Title
+  titleText = fixArticles(title.flatten('#origin#')).trim().toUpperCase();
+  episodeText = episode.flatten('#origin#');
+  if (episodeText.includes("Story")) {
+    fullTitleText = titleText + "</br>" + episodeText;
+  } else {
+    fullTitleText = episodeText + "</br>" + titleText;
+  }
+  
+  $('#episode-title').html(fullTitleText);
+  // console.log(fullTitleText)
+}
 
+function setupElements() {
+  $("#long-time-ago").hide();
+  $("#star-wars").hide();
+  $("#crawl").hide();
+  setTimeout(showLongTimeAgo, 3000);
+}
 
-});
+function showLongTimeAgo() {
+  $("#long-time-ago").fadeIn("slow");
+}
+
+function hideLongTimeAgo() {
+  $("#long-time-ago").fadeOut("slow");
+}
+
+function startMusic() {
+  $("#player")[0].play();
+}
+
+function scrollStarWars() {
+  $("#star-wars").show();
+  setTimeout(function(){
+    $("#star-wars").hide();
+  }, 8500);
+}
+
+function scrollTitles() {
+  $('#crawl').show();
+  // generate paragraphs
+  $('#crawl-text').html("");
+  my_para = intro.flatten('#opening#').initialCap();
+  $('#crawl-text').append("<p>" + my_para + "</p>");
+  // console.log(my_para)
+  for (i = 0; i < 4; i++) { 
+    my_para = intro.flatten('#story#').initialCap();
+    $('#crawl-text').append("<p>" + my_para + "</p>");
+    // console.log(my_para)
+  }
+}

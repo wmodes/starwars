@@ -1,0 +1,150 @@
+@import url(http://fonts.googleapis.com/css?family=News+Cycle:400,700);
+
+html {
+  background: url("../img/bg-stars.png") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+html,
+body {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  font: 700 1em "News Cycle", sans-serif;
+  letter-spacing: .15em;
+  color: #ff6;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+#field {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.center-both {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  /* border: solid 1px red; */
+}
+
+.center-horz {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  /* border: solid 1px red; */
+}
+
+#long-time-ago {
+  display: none;
+  width: 15em;
+  /* margin: 0 0 0 -7.5em; */
+  font-size: 400%;
+  font-weight: 400;
+  color: #4bd5ee;
+  /* transition: all 6s ease-out; */
+  cursor: pointer;
+}
+
+#star-wars {
+  display: none;
+  width: 100%;
+  animation: starwars 9s ease-out;
+}
+
+@keyframes starwars {
+  0% {
+    width: 100%;
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    width: 0%;
+  }
+}
+
+#star-wars object {
+  width: 100%;
+}
+
+#crawl {
+  display: none;
+  /*width: 14.65em;*/
+  width: 15em;
+  margin: 0 0 0 -7.325em;
+  top: auto;
+  bottom: 0;
+  /* the height determines when the tet fades out */
+  height: 80em;
+  font-size: 350%;
+  text-align: justify;
+  text-justify: inter-character;
+  overflow: hidden;
+  opacity: 1;
+  transform-origin: 50% 100%;
+  transform: perspective(300px) rotateX(22deg);
+}
+
+#episode-title {
+  text-align: center;
+  margin-bottom: 0;
+  font-size: 120%;
+}
+
+#crawl > div {
+  position: absolute;
+  top: 100%;
+  /* the second param below controls the speed of the scroll */
+  animation: titles 80s linear;
+}
+
+#crawl > div > p {
+  margin: 1.35em 0 1.85em 0;
+  line-height: 1.35em;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  hyphens: auto;
+}
+
+.starwars p:first-letter {
+  text-transform: capitalize;
+}
+
+@keyframes titles {
+  0% {
+    top: 100%;
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    top: 20%;
+    opacity: 0;
+  }
+}
+
+/* 
+position: relative;
+z-index: 9;
+margin-left: calc(10% + 60px);
+margin-right: calc(10% + 60px);
+margin-top: calc( 4 * 1rem);
+margin-bottom: 0; */
